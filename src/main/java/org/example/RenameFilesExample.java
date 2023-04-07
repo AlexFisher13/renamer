@@ -15,7 +15,7 @@ import java.util.TimeZone;
 
 public class RenameFilesExample {
     public static void main(String[] args) {
-        String folderPath = "/Users/fisher/Desktop/test";
+        String folderPath = "/Users/fisher/Desktop/Photos";
         File folder = new File(folderPath);
         if (!folder.isDirectory()) {
             System.out.println("Specified path is not a folder");
@@ -54,7 +54,7 @@ public class RenameFilesExample {
             case "mov":
                 IsoFile isoFile = new IsoFile(file);
                 MovieHeaderBox movieHeaderBox = isoFile.getMovieBox().getMovieHeaderBox();
-                Date creationTime = new Date(movieHeaderBox.getCreationTime().getTime() * 1000);
+                Date creationTime = new Date(movieHeaderBox.getCreationTime().getTime());
                 dateStr = formatDate(creationTime);
                 break;
             default:
