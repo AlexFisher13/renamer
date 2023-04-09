@@ -1,11 +1,11 @@
 package org.example;
 
+import com.coremedia.iso.IsoFile;
+import com.coremedia.iso.boxes.MovieHeaderBox;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
-import org.mp4parser.IsoFile;
-import org.mp4parser.boxes.iso14496.part12.MovieHeaderBox;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,7 +52,7 @@ public class RenameFilesExample {
                 dateStr = formatDate(date);
                 break;
             case "mov":
-                IsoFile isoFile = new IsoFile(file);
+                IsoFile isoFile = new IsoFile(file.getPath());
                 MovieHeaderBox movieHeaderBox = isoFile.getMovieBox().getMovieHeaderBox();
                 Date creationTime = new Date(movieHeaderBox.getCreationTime().getTime());
                 dateStr = formatDate(creationTime);
