@@ -48,7 +48,10 @@ public class RenameFilesExample {
             case "jpeg":
                 metadata = ImageMetadataReader.readMetadata(file);
                 ExifSubIFDDirectory directory = metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
-                Date date = directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL);
+                Date date = directory != null ? directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL) : new Date(file.lastModified());
+                if (date == null) {
+                    date = new Date(file.lastModified());
+                }
                 dateStr = formatDate(date);
                 break;
             case "mov":
